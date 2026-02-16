@@ -1,0 +1,13 @@
+/**
+ * @license EUPL-1.2+
+ * Copyright Gemeente Amsterdam
+ */
+
+.loginGrid {
+  min-height: 100vh;
+  background: #f3f4f6;
+}
+
+.loginCard {
+  padding: 2rem;
+}

@@ -1,0 +1,80 @@
+/**
+ * @license EUPL-1.2+
+ * Copyright Gemeente Amsterdam
+ */
+
+.wrapper {
+  margin: 0;
+  padding: 0;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  padding: var(--ams-space-xs);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Style the native BlockTypeSelect dropdown */
+.blockTypeSelect {
+  padding: var(--ams-space-s);
+  padding-right: var(--ams-space-l);
+  border: 1px solid var(--ams-color-border);
+  border-radius: 0;
+  background-color: #f5f5f5;
+  font-size: 1rem;
+  font-family: "Amsterdam Sans", sans-serif;
+  cursor: pointer;
+  color: var(--ams-color-text);
+  margin-left: var(--ams-space-xs);
+  min-width: auto;
+  width: auto;
+}
+
+.blockTypeSelect:hover {
+  background-color: #e8e8e8;
+}
+
+.blockTypeSelect:focus {
+  outline: 2px solid var(--ams-color-primary-blue, #004699);
+  outline-offset: 2px;
+}
+
+/* Global styles for MDXEditor */
+:global(.mdx-editor-styling) {
+  color: var(--ams-color-text);
+  font-family: var(--ams-typography-font-family);
+  line-height: var(--ams-typography-body-text-line-height);
+  padding: 0 !important;
+}
+
+:global(.mdx-editor-toolbar-styling) {
+  position: sticky;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid var(--ams-color-border);
+  padding: var(--ams-space-x);
+  top: var(--toolbar-top);
+  z-index: 9;
+  border-radius: 0;
+}
+
+:global(.mdx-editor-toolbar-styling > *) {
+  position: relative;
+  z-index: 2;
+}
+
+:global(.mdx-editor-toolbar-styling::before) {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background-color: #f5f5f5;
+  z-index: 1;
+}

@@ -1,0 +1,80 @@
+/* Sticky page header */
+.ams-page__area--header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: white;
+}
+
+.inkoop-menu-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--ams-menu-background-color);
+}
+
+/* Only apply full height and sticky positioning in wide window (sidebar) mode */
+.ams-page__area--menu.inkoop-menu-wrapper {
+  block-size: 100vh;
+  position: sticky;
+  inset-block-start: 0;
+  overflow-y: auto;
+}
+
+.inkoop-menu-bottom {
+  /* margin-block-start: auto; */
+}
+
+.inkoop-main-background {
+  background-color: #f5f5f5;
+}
+
+/* Layout variables for sticky panels */
+:root {
+  /* Top offset for sticky panels - small offset from top of viewport */
+  --inkoop-sticky-top: 3rem;
+
+  /* Unified panel height calculation - both panels use this */
+  /* Account for: sticky offset + some bottom spacing + step indicator */
+  --inkoop-panel-height: calc(100vh - 13rem);
+
+  /* Sticky header height (padding + content) - adjust if header content changes */
+  --inkoop-sticky-header-height: calc(var(--ams-space-l) + 105px);
+}
+
+/* Ensure page and main areas allow sticky to work */
+.ams-page,
+.ams-page__area--body,
+.inkoop-main-background {
+  overflow: visible !important;
+}
+
+.inkoop-white-background {
+  background-color: var(--ams-color-background);
+  padding-block: var(--ams-space-l);
+  padding-inline: var(--ams-space-l);
+}
+
+/* Variant for sticky panels - no overflow hidden to allow sticky positioning */
+.inkoop-sticky-panel {
+  background-color: var(--ams-color-background);
+  padding-block: var(--ams-space-l);
+  padding-inline: var(--ams-space-l);
+}
+
+/* Sticky header that prevents content from peeking through padding */
+.sticky-header-with-padding {
+  /* Extend background upward to cover the padding area */
+  position: relative;
+}
+
+.sticky-header-with-padding::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--ams-space-l));
+  left: 0;
+  right: 0;
+  height: var(--ams-space-l);
+  background-color: white;
+  z-index: -1;
+}

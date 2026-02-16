@@ -1,0 +1,70 @@
+/**
+ * @license EUPL-1.2+
+ * Copyright Gemeente Amsterdam
+ */
+
+.sidebar {
+  position: sticky;
+  top: var(--inkoop-sticky-top);
+  display: flex;
+  flex-direction: column;
+  height: var(--inkoop-panel-height);
+  overflow-y: auto;
+  padding-top: 0;
+}
+
+.checklistSection, .versionSection {
+  padding-top: var(--ams-space-l);
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ams-space-xs);
+}
+
+.checkboxItem {
+  transition: all 0.3s ease-in-out;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ams-space-s);
+}
+
+.fullWidthButton {
+  width: 100%;
+}
+
+.bottomSection {
+  margin-top: auto;
+}
+
+.approvalButton {
+  width: 100%;
+  margin-top: var(--ams-space-m);
+}
+
+.actionGroupFullWidth {
+  display: flex !important;
+  width: 100%;
+}
+
+.flexButton {
+  flex: 1 1 0%;
+  white-space: nowrap;
+  min-width: fit-content;
+}

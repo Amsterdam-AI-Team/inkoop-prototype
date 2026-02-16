@@ -1,0 +1,21 @@
+/**
+ * @license EUPL-1.2+
+ * Copyright Gemeente Amsterdam
+ */
+
+.iconWrapper {
+  width: 24px;
+  height: 24px;
+}
+
+.title {
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+}
+
+.deleteButtonWrapper {
+  margin-left: auto;
+}

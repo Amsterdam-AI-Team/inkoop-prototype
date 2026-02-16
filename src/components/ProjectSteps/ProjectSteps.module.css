@@ -1,0 +1,11 @@
+.steps {
+  display: flex;
+  gap: var(--ams-space-l);
+  align-items: flex-end;
+}
+
+.stepLink {
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
