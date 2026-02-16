@@ -1,0 +1,24 @@
+/**
+ * @license EUPL-1.2+
+ * Copyright Gemeente Amsterdam
+ */
+
+.mainPanel {
+  position: sticky;
+  top: var(--inkoop-sticky-top);
+  display: flex;
+  flex-direction: column;
+  height: var(--inkoop-panel-height);
+  overflow-y: auto;
+  background-color: white;
+  padding-top: 0;
+}
+
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 10;
+  padding-top: var(--ams-space-l);
+  padding-bottom: var(--ams-space-m);
+}

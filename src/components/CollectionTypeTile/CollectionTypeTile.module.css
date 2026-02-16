@@ -1,0 +1,36 @@
+/**
+ * @license EUPL-1.2+
+ * Copyright Gemeente Amsterdam
+ */
+
+.tile {
+  display: flex;
+  align-items: center;
+  gap: var(--ams-space-m);
+  padding: var(--ams-space-m) var(--ams-space-l);
+  border: 1px solid var(--ams-color-separator);
+  box-sizing: border-box;
+  cursor: default;
+}
+
+.tile--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tile--clickable {
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  gap: var(--ams-space-m);
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.description {
+  color: var(--ams-color-text-secondary);
+}

@@ -1,0 +1,28 @@
+.wrapper {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 12rem;
+  height: 12rem;
+  overflow: hidden;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+.banner {
+  position: absolute;
+  bottom: 2rem;
+  right: -3rem;
+  width: 12rem;
+  background-color: #ec0000;
+  background-color: var(--ams-logo-title-color); /* Amsterdam Red - stands out as 'alert/notice' but branded */
+  color: #ffffff;
+  text-align: center;
+  transform: rotate(-45deg);
+  padding: 0.5rem 0;
+  font-family: "Amsterdam Sans", sans-serif; /* Assuming font is available via global CSS */
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

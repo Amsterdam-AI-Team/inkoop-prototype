@@ -1,0 +1,88 @@
+/* General */
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  /* AI Purple color token */
+  --color-ai-purple: #7B2CBF;
+  --color-ai-purple-hover: #6b12b8;
+  --color-ai-purple-disabled: #b17de8;
+}
+
+/* Indicate non-functional links */
+a[href="#"] {
+  cursor: not-allowed;
+
+  &:hover {
+    text-decoration-line: line-through;
+  }
+}
+
+.ams-details {
+  color: var(--ams-color-text);
+  font-family: var(--ams-typography-font-family);
+  font-size: var(--ams-typography-body-text-font-size);
+  font-weight: var(--ams-typography-body-text-font-weight);
+  line-height: var(--ams-typography-body-text-line-height);
+
+  summary {
+    cursor: var(--ams-cursor-interactive);
+    width: max-content;
+  }
+
+  code {
+    font-size: 75%;
+    line-height: 2;
+  }
+}
+
+/* AI Purple Button Variant - Primary */
+.ams-button--ai-purple {
+  background-color: var(--color-ai-purple);
+  border-color: var(--color-ai-purple);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ams-button--ai-purple:hover:not(:disabled, [aria-disabled='true']) {
+  background-color: var(--color-ai-purple-hover);
+  border-color: var(--color-ai-purple-hover);
+}
+
+.ams-button--ai-purple:disabled,
+.ams-button--ai-purple[aria-disabled='true'] {
+  background-color: var(--color-ai-purple-disabled);
+  border-color: var(--color-ai-purple-disabled);
+  opacity: 0.6;
+}
+
+/* AI Purple Button Variant - Secondary */
+.ams-button--secondary.ams-button--ai-purple {
+  background-color: white;
+  border-color: var(--color-ai-purple);
+  border-width: 2px;
+  color: var(--color-ai-purple);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ams-button--secondary.ams-button--ai-purple:hover:not(:disabled, [aria-disabled='true']) {
+  background-color: var(--color-ai-purple);
+  border-color: var(--color-ai-purple);
+  color: white;
+  box-shadow: none;
+}
+
+.ams-button--secondary.ams-button--ai-purple:disabled,
+.ams-button--secondary.ams-button--ai-purple[aria-disabled='true'] {
+  border-color: var(--color-ai-purple-disabled);
+  color: var(--color-ai-purple-disabled);
+  opacity: 0.6;
+}

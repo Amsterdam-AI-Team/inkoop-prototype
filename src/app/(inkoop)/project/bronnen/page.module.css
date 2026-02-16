@@ -1,0 +1,85 @@
+/**
+ * @license EUPL-1.2+
+ * Copyright Gemeente Amsterdam
+ */
+
+.sourceSection {
+  margin-bottom: var(--ams-space-2xl);
+  max-width: 700px;
+}
+
+.errorMessage {
+  white-space: pre-line;
+}
+
+.fileListWrapper {
+  width: 100%;
+}
+
+.fullWidthLink {
+  width: 100%;
+}
+
+.fullWidthButton {
+  width: 100%;
+}
+
+.debugContainer {
+  margin-top: var(--ams-space-2xl);
+  padding: var(--ams-space-l);
+  background: #f5f5f5;
+  border-radius: 0px;
+  border: 2px dashed #ccc;
+}
+
+.debugContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ams-space-m);
+}
+
+.debugPre {
+  background: white;
+  padding: var(--ams-space-m);
+  border-radius: 0px;
+  font-size: 0.875rem;
+  overflow: auto;
+  margin-top: var(--ams-space-xs);
+}
+
+/* File list item styles */
+:global(.ams-file-list__item) {
+  display: flex;
+  align-items: center;
+  gap: var(--ams-space-m);
+}
+
+:global(.ams-file-list__item-info) {
+  flex: 1;
+}
+
+.websiteLinkUrl {
+  color: var(--ams-button-secondary-color);
+}
+
+.websiteLinkIcon {
+  color: var(--ams-button-secondary-color);
+}
+
+.websiteLinksInputGroup {
+  display: flex;
+  gap: var(--ams-space-s);
+  width: 100%;
+}
+
+.websiteLinksInput {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .websiteLinksInputGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

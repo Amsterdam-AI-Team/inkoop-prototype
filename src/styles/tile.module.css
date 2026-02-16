@@ -1,0 +1,41 @@
+/**
+ * @license EUPL-1.2+
+ * Copyright Gemeente Amsterdam
+ */
+
+/**
+ * Shared tile base styles
+ * Use these classes across all tile components for consistency
+ */
+
+.base {
+  display: flex;
+  padding: var(--ams-space-m) var(--ams-space-l);
+  border: 1px solid var(--ams-color-separator);
+  box-sizing: border-box;
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.horizontal {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ams-space-m);
+}
+
+.vertical {
+  flex-direction: column;
+  gap: var(--ams-space-xs);
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}

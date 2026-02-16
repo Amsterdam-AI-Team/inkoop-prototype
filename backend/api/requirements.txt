@@ -1,0 +1,16 @@
+fastapi==0.119.0
+uvicorn[standard]==0.38.0
+sqlalchemy>=2.0,<3.0
+psycopg2-binary>=2.9.0
+pgvector==0.4.1
+python-dotenv>=1.0.0
+PyJWT>=2.8.0
+bcrypt>=4.0.0
+pydantic[email]>=2.0.0
+python-docx==1.2.0
+pdfplumber==0.11.7
+openpyxl==3.1.5
+python-multipart==0.0.20
+python-magic==0.4.27
+browser-use==0.9.4
+beautifulsoup4==4.14.2

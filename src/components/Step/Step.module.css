@@ -1,0 +1,73 @@
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ams-space-xs);
+  min-width: 220px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.step:hover {
+  opacity: 0.7;
+}
+
+.stepNumber {
+  font-size: var(--ams-typography-body-text-small-font-size);
+  font-weight: 400;
+  font-family: var(--ams-typography-font-family);
+  color: var(--ams-color-text);
+}
+
+.stepLabel {
+  font-size: var(--ams-typography-body-text-font-size);
+  font-weight: 400;
+  font-family: var(--ams-typography-font-family);
+  color: var(--ams-color-text);
+}
+
+.stepBar {
+  height: 4px;
+  width: 100%;
+  background-color: #b4b4b4;
+  margin-top: var(--ams-space-xs);
+}
+
+/* Active state - bold text */
+.activeNumber {
+  font-weight: 700;
+}
+
+.activeLabel {
+  font-weight: 700;
+}
+
+.activeBar {
+  background-color: #1194ff;
+}
+
+/* Completed state - darker blue underline */
+.completedNumber {
+  /* text-decoration: underline; */
+  text-decoration-color: #004699;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.completedBar {
+  background-color: #004699;
+}
+
+/* Upcoming state - gray underline */
+.upcomingBar {
+  background-color: #b4b4b4;
+}
+
+/* Disabled state - lighter gray text and underline */
+.disabledNumber,
+.disabledLabel {
+  color: #b4b4b4;
+}
+
+.disabledBar {
+  background-color: #e6e6e6;
+}
