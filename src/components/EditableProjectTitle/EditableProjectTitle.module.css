@@ -1,0 +1,21 @@
+.wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.wrapper :global(.ams-text-input) {
+  font-size: var(--ams-heading-2-font-size);
+  font-weight: var(--ams-heading-font-weight);
+  border: 0;
+  margin-left: -1rem;
+  margin-top: -.25rem;
+  padding-right: 3rem;
+}
+
+.pencilIcon {
+  position: absolute;
+  right: 0;
+  top: 0.5rem;
+  cursor: pointer;
+}

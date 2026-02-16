@@ -1,0 +1,227 @@
+/**
+ * @license EUPL-1.2+
+ * Copyright Gemeente Amsterdam
+ */
+
+/* ========================================
+   SECTION CONTAINERS
+   ======================================== */
+
+.section {
+  padding-block-end: var(--ams-space-xl);
+  border-bottom: 1px solid var(--ams-color-separator);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+/* Collapsible section header */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--ams-space-m);
+  margin-inline: calc(-1 * var(--ams-space-m));
+  margin-block-end: var(--ams-space-m);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.sectionHeader:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.sectionHeader:focus-visible {
+  outline: 2px solid var(--ams-color-primary-blue, #004699);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   CARD HIERARCHY
+   ======================================== */
+
+/* Level 1: Top-level cards (users, collection templates) */
+.cardLevel1 {
+  padding: var(--ams-space-l);
+  border: 2px solid var(--ams-color-separator);
+  border-radius: 4px;
+  margin-block-end: var(--ams-space-m);
+  background-color: white;
+}
+
+/* Level 2: Nested cards (flow templates) */
+.cardLevel2 {
+  padding: var(--ams-space-m);
+  border: 1px solid var(--ams-color-separator);
+  border-radius: 4px;
+  margin-block-end: var(--ams-space-s);
+  background-color: white;
+}
+
+/* Level 3: Settings cards (simpler, no nesting) */
+.cardLevel3 {
+  padding: var(--ams-space-m);
+  border-left: 3px solid var(--ams-color-primary-blue, #004699);
+  padding-inline-start: var(--ams-space-l);
+  margin-block-end: var(--ams-space-m);
+}
+
+/* ========================================
+   FORM CONTAINERS
+   ======================================== */
+
+/* New item forms - distinct blue tint with border */
+.newItemForm {
+  padding: var(--ams-space-l);
+  border: 2px solid var(--ams-color-primary-blue, #004699);
+  border-radius: 4px;
+  background-color: #f0f7ff;
+  margin-block-end: var(--ams-space-m);
+}
+
+/* Edit mode - subtle highlight */
+.editMode {
+  background-color: #fffbf0;
+  border-color: #ffc107;
+}
+
+/* ========================================
+   CONTENT PREVIEWS
+   ======================================== */
+
+.previewBox {
+  background-color: #f5f5f5;
+  padding: var(--ams-space-s);
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.previewBoxLong {
+  background-color: #f5f5f5;
+  padding: var(--ams-space-s);
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  max-height: 200px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.previewBoxPrompt {
+  background-color: white;
+  border: 1px solid var(--ams-color-separator);
+  padding: var(--ams-space-s);
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  max-height: 200px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+/* ========================================
+   TEXTAREAS
+   ======================================== */
+
+.textarea {
+  width: 100%;
+  font-family: monospace;
+  font-size: 0.9rem;
+  padding: var(--ams-space-s);
+  border: 1px solid var(--ams-color-separator);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.textarea:focus {
+  outline: 2px solid var(--ams-color-primary-blue, #004699);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   CARD LAYOUTS
+   ======================================== */
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--ams-space-m);
+}
+
+.cardHeaderContent {
+  flex: 1;
+  min-width: 0; /* Enable text truncation if needed */
+}
+
+.cardHeaderActions {
+  display: flex;
+  gap: var(--ams-space-s);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.metaText {
+  font-size: 0.85rem;
+  color: var(--ams-color-text-secondary);
+}
+
+/* ========================================
+   DANGER ZONE
+   ======================================== */
+
+.dangerZone {
+  margin-block-start: var(--ams-space-xxl);
+  padding-block-start: var(--ams-space-l);
+  border-top: 2px solid #ec0000;
+}
+
+.dangerZoneHeading {
+  color: #ec0000;
+}
+
+.dangerButton {
+  background-color: #ec0000 !important;
+  border-color: #ec0000 !important;
+}
+
+.dangerButton:hover {
+  background-color: #c00000 !important;
+}
+
+/* ========================================
+   FLOW TEMPLATE NESTING
+   ======================================== */
+
+.flowTemplatesContainer {
+  margin-block-start: var(--ams-space-m);
+  padding-inline-start: var(--ams-space-l);
+  border-left: 3px solid var(--ams-color-separator);
+}
+
+.flowTemplatesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--ams-space-s);
+  margin-inline-start: calc(-1 * var(--ams-space-s));
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.flowTemplatesHeader:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* ========================================
+   UTILITIES
+   ======================================== */
+
+.statusBadge {
+  display: inline-block;
+  margin-block-end: var(--ams-space-xs);
+}
