@@ -2,7 +2,7 @@
 
 Next.js frontend application for a llm writing assistance tool, built with the [Amsterdam Design System](https://designsystem.amsterdam).
 
-This version is make specifically for Inkoop (the procurement team at the municipality).
+This version is made specifically for Inkoop (the procurement team at the municipality), but can be extended to other teams/use cases.
 
 ## Prerequisites
 
