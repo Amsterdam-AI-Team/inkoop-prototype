@@ -171,8 +171,7 @@ The app uses cookie-based authentication with httpOnly cookies:
 │   │   └── utils/                 # Helper functions
 │   └── database/
 │       ├── Dockerfile             # PostgreSQL + pgvector image
-│       ├── init.sql               # Base schema
-│       ├── 001_add_admin_and_settings.sql  # Admin tables + seed data
+│       ├── init.sql               # Full schema + seed data
 │       └── testdata.sql           # Optional test data
 │
 ├── package.json                   # Frontend dependencies
@@ -354,14 +353,14 @@ docker exec -it inkoop-db psql -U postgres -d inkoopsstrategie \
   -c "SELECT email, is_admin, hashed_password IS NOT NULL AS has_password FROM users WHERE is_admin = TRUE;"
 ```
 
-### Migration Not Applied
+### Schema Not Applied
 
 ```bash
 docker exec -it inkoop-db psql -U postgres -d inkoopsstrategie \
   -c "SELECT tablename FROM pg_tables WHERE schemaname = 'public';"
 ```
 
-If `app_settings` table is missing, the migration didn't run. Delete the volume and rebuild the database image.
+If tables are missing, the init script didn't run. Delete the volume and rebuild the database image.
 
 ## Design System
 
