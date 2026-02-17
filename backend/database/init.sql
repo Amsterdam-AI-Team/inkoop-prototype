@@ -32,7 +32,8 @@ CREATE TABLE IF NOT EXISTS users (
   idp_provider   TEXT,                       
   idp_subject    TEXT,                       
   created_at     TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at     TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  updated_at     TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  is_admin BOOLEAN
 );
 CREATE INDEX IF NOT EXISTS users_idp_idx ON users (idp_provider, idp_subject);
 
