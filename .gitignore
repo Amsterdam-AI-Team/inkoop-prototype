@@ -143,6 +143,9 @@ vite.config.ts.timestamp-*
 # Local files
 *.local
 
+# Database dumps
+*.dump
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
