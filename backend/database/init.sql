@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS users (
   idp_subject    TEXT,                       
   created_at     TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at     TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  is_admin BOOLEAN
+  is_admin       BOOLEAN DEFAULT FALSE
 );
 CREATE INDEX IF NOT EXISTS users_idp_idx ON users (idp_provider, idp_subject);
 
@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS collections (
   user_id      UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   name         TEXT NOT NULL,
   description  TEXT,
+  template_content TEXT,
   status       collection_status NOT NULL DEFAULT 'pending',
   created_at   TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -235,3 +236,68 @@ CREATE TABLE IF NOT EXISTS web_search_logs (
   message     TEXT NOT NULL,
   created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- =========================================================
+-- APP SETTINGS (key-value: system_prompt, app_title, brand_name)
+-- =========================================================
+CREATE TABLE IF NOT EXISTS app_settings (
+  key         TEXT PRIMARY KEY,
+  value       TEXT NOT NULL,
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_by  UUID REFERENCES users(id) ON DELETE SET NULL
+);
+
+CREATE TRIGGER trg_app_settings_updated_at
+BEFORE UPDATE ON app_settings
+FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+-- =========================================================
+-- COLLECTION TEMPLATES (admin-configured collection types)
+-- =========================================================
+CREATE TABLE IF NOT EXISTS collection_templates (
+  id               UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  type             TEXT UNIQUE NOT NULL,
+  display_name     TEXT NOT NULL,
+  description      TEXT,
+  template_content TEXT,
+  enabled          BOOLEAN DEFAULT TRUE,
+  sort_order       INT DEFAULT 0,
+  created_at       TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at       TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TRIGGER trg_collection_templates_updated_at
+BEFORE UPDATE ON collection_templates
+FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+-- =========================================================
+-- FLOW TEMPLATES (belong to a collection template)
+-- =========================================================
+CREATE TABLE IF NOT EXISTS flow_templates (
+  id                     UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  collection_template_id UUID NOT NULL REFERENCES collection_templates(id) ON DELETE CASCADE,
+  name                   TEXT NOT NULL,
+  description            TEXT,
+  template_name          TEXT NOT NULL,
+  template_content       TEXT NOT NULL,
+  sort_order             INT DEFAULT 0,
+  created_at             TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at             TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS flow_templates_collection_idx ON flow_templates (collection_template_id);
+
+CREATE TRIGGER trg_flow_templates_updated_at
+BEFORE UPDATE ON flow_templates
+FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+-- =========================================================
+-- Seed initial admin users
+-- =========================================================
+-- Password for both: secret123! (bcrypt hash, 12 rounds)
+-- Generated with: bcrypt.hashpw(b'secret123!', bcrypt.gensalt(rounds=12))
+INSERT INTO users (email, display_name, hashed_password, is_admin)
+VALUES
+  ('j.baas@example.com', 'J. Baas', '$2b$12$nEWLrALn8hOSBtxv1cm8ue6O4geZAadwBCUN35/cjZ8MmfGDHNbPO', TRUE),
+  ('k.bouwens@example.com', 'K. Bouwens', '$2b$12$nEWLrALn8hOSBtxv1cm8ue6O4geZAadwBCUN35/cjZ8MmfGDHNbPO', TRUE)
+ON CONFLICT (email) DO NOTHING;
