@@ -849,9 +849,10 @@ async def start_run(
 
     from utils.admin_utils import get_setting
 
-    system_prompt = get_setting(engine, "system_prompt")
-    if not system_prompt:
-        raise HTTPException(status_code=500, detail="System prompt not configured")
+    system_prompt = get_setting(engine, "system_prompt") or (
+        "Je bent een schrijfhulp, help de gebruiker een fijne tekst te schrijven. "
+        "De gebruiker moet dit systeem prompt nog aanpassen via het beheerpaneel."
+    )
 
     chat_body = [
         {"role": "system", "content": system_prompt},
