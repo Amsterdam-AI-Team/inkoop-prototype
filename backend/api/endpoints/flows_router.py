@@ -849,11 +849,9 @@ async def start_run(
 
     from utils.admin_utils import get_setting
 
-    # Get system prompt from database, fall back to hardcoded prompt
     system_prompt = get_setting(engine, "system_prompt")
     if not system_prompt:
-        from prompts.system_prompt import SYSTEM_TEMPLATE
-        system_prompt = SYSTEM_TEMPLATE.substitute()
+        raise HTTPException(status_code=500, detail="System prompt not configured")
 
     chat_body = [
         {"role": "system", "content": system_prompt},
