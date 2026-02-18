@@ -1,43 +1,33 @@
-import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { ensureBaseUrl, getAuthToken, createAuthHeaders } from '@/lib/api/utils';
 
 export async function GET() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get('accessToken')?.value;
-
-  if (!token) {
-    return NextResponse.json({ user: null }, { status: 401 });
-  }
-
   try {
-    // Basic JWT decoding (Header.Payload.Signature)
-    const parts = token.split('.');
-    if (parts.length !== 3) {
-      throw new Error('Invalid token format');
+    const token = await getAuthToken();
+
+    if (!token) {
+      return NextResponse.json({ user: null }, { status: 401 });
     }
 
-    const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString());
+    const baseUrl = ensureBaseUrl();
+    const res = await fetch(`${baseUrl}/auth/me`, {
+      headers: createAuthHeaders(token),
+    });
 
-    // Check if token is expired
-    if (payload.exp && payload.exp * 1000 < Date.now()) {
+    if (!res.ok) {
       const response = NextResponse.json({ user: null }, { status: 401 });
-      // Clear the expired cookie
-      response.cookies.set('accessToken', '', { maxAge: 0 });
+      if (res.status === 401) {
+        response.cookies.set('accessToken', '', { maxAge: 0 });
+      }
       return response;
     }
 
-    // Map JWT claims to a user object
-    const user = {
-      id: payload.sub,
-      email: payload.email,
-      is_admin: payload.is_admin || false,
-    };
-
+    const user = await res.json();
     return NextResponse.json({ user });
-  } catch (error) {
-    const response = NextResponse.json({ user: null }, { status: 401 });
-    // Clear the invalid cookie
-    response.cookies.set('accessToken', '', { maxAge: 0 });
-    return response;
+  } catch (err: any) {
+    return NextResponse.json(
+      { user: null, detail: err.message ?? 'Auth error' },
+      { status: 500 },
+    );
   }
 }
