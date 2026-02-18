@@ -45,7 +45,7 @@ export const InternetZoektochtDialog = forwardRef<HTMLDialogElement, InternetZoe
 
       const poll = async () => {
         try {
-          const res = await fetch(`/api/flows/websearch/${flowId}/status`, {
+          const res = await fetch(`/api/flows/${flowId}/websearch/status`, {
             method: 'GET',
             credentials: 'include',
           })
@@ -68,7 +68,7 @@ export const InternetZoektochtDialog = forwardRef<HTMLDialogElement, InternetZoe
             setLoading(false)
 
             // Als hij klaar is → bronnen ophalen
-            const srcRes = await fetch(`/api/flows/websearch/${flowId}/get_sources`, {
+            const srcRes = await fetch(`/api/flows/${flowId}/websearch/get_sources`, {
               method: 'POST',
               credentials: 'include',
             })
@@ -130,7 +130,7 @@ export const InternetZoektochtDialog = forwardRef<HTMLDialogElement, InternetZoe
       try {
         // Make real API call
         console.log('WEBSEARCH!!!')
-        const response = await fetch(`/api/flows/websearch/${flowId}`, {
+        const response = await fetch(`/api/flows/${flowId}/websearch`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
