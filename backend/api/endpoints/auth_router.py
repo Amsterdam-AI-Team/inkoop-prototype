@@ -14,7 +14,7 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 # JWT settings from env
 JWT_SECRET = os.getenv("JWT_SECRET", "change_me_in_prod")
 JWT_ALG = "HS256"
-JWT_EXPIRES_MIN = int(os.getenv("JWT_EXPIRES_MIN", "60"))
+JWT_EXPIRES_MIN = int(os.getenv("JWT_EXPIRES_MIN", "1440"))  # default: 24 hours
 JWT_ISS = os.getenv("JWT_ISS", "inkoopstrategie-api")
 
 
@@ -35,7 +35,7 @@ def _verify_password(plain: str, hashed: str) -> bool:
 
 def _mk_token(user_id: str, email: str, is_admin: bool = False) -> TokenResponse:
     now = int(time.time())
-    exp = now + JWT_EXPIRES_MIN * 3600
+    exp = now + JWT_EXPIRES_MIN * 60
     payload = {
         "sub": user_id,
         "email": email,
@@ -159,6 +159,15 @@ def login(payload: LoginRequest, request: Request):
 
     # Issue JWT
     return _mk_token(str(row["id"]), row["email"], row.get("is_admin", False))
+
+
+@router.get("/me")
+def me(current_user: dict = Depends(get_current_user)):
+    return {
+        "id": current_user["sub"],
+        "email": current_user["email"],
+        "is_admin": current_user.get("is_admin", False),
+    }
 
 
 @router.post("/change-password", status_code=200)
