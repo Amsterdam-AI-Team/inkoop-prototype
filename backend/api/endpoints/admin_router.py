@@ -248,7 +248,8 @@ def update_collection_template(
     engine = _get_engine(request)
     assert_is_admin(engine, current_user["sub"])
 
-    updates = payload.model_dump(exclude_unset=True)
+    _ALLOWED_CT_COLS = {"type", "display_name", "description", "template_content", "enabled", "sort_order"}
+    updates = {k: v for k, v in payload.model_dump(exclude_unset=True).items() if k in _ALLOWED_CT_COLS}
     if not updates:
         raise HTTPException(status_code=400, detail="No fields to update")
 
@@ -336,7 +337,8 @@ def update_flow_template(
     engine = _get_engine(request)
     assert_is_admin(engine, current_user["sub"])
 
-    updates = payload.model_dump(exclude_unset=True)
+    _ALLOWED_FT_COLS = {"name", "description", "template_name", "template_content", "sort_order"}
+    updates = {k: v for k, v in payload.model_dump(exclude_unset=True).items() if k in _ALLOWED_FT_COLS}
     if not updates:
         raise HTTPException(status_code=400, detail="No fields to update")
 
@@ -577,6 +579,11 @@ def update_user(
     # Hash password if provided
     if "password" in updates:
         updates["hashed_password"] = _hash_password(updates.pop("password"))
+
+    _ALLOWED_USER_COLS = {"is_admin", "display_name", "hashed_password"}
+    updates = {k: v for k, v in updates.items() if k in _ALLOWED_USER_COLS}
+    if not updates:
+        raise HTTPException(status_code=400, detail="No fields to update")
 
     set_clauses = ", ".join(f"{k} = :{k}" for k in updates)
     updates["user_id"] = str(user_id)
