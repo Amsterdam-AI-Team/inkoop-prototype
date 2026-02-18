@@ -32,12 +32,13 @@ export async function POST(req: NextRequest) {
 
   if (token) {
     const cookieStore = await cookies();
+    const maxAge = data.expires_in ?? 60 * 60 * 24; // fallback: 24 hours
 
     cookieStore.set('accessToken', token, {
       httpOnly: true,
       secure: req.nextUrl.protocol === 'https:',
       sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 7, // 1 week
+      maxAge,
       path: '/',
     });
   }
