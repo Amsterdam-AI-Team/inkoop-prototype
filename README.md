@@ -171,8 +171,7 @@ The app uses cookie-based authentication with httpOnly cookies:
 │   │   └── utils/                 # Helper functions
 │   └── database/
 │       ├── Dockerfile             # PostgreSQL + pgvector image
-│       ├── init.sql               # Full schema + seed data
-│       └── testdata.sql           # Optional test data
+│       └── init.sql               # Full schema + seed data
 │
 ├── package.json                   # Frontend dependencies
 ├── next.config.mjs                # Next.js configuration
@@ -257,12 +256,6 @@ Base URL: `http://localhost:8000`
 - `flow_templates` — Flow configurations linked to collection templates
 
 ### Database Management
-
-**Load test data** (optional, for development):
-
-```bash
-docker exec -i inkoop-db psql -U postgres -d inkoopsstrategie < backend/database/testdata.sql
-```
 
 **Access the database** via psql:
 
